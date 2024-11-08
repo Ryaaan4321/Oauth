@@ -2,6 +2,10 @@ import User from '../models/db.js'
 import bcryptjs from 'bcryptjs'
 import { errorhandler } from '../utils/error.js'
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+
+dotenv.config();
+
 
 export const signup = async (req, res, next) => {
     const username = req.body.username;
@@ -33,9 +37,12 @@ export const signin = async (req, res, next) => {
         const token = jwt.sign({ id: validuser._id },
             process.env.JWT_SECRET
         )
-        res.status(200).json({
-            token
+        const { password: hashedpassword, ...userData } = validuser._doc;
+        res.cookie('access_token', token, {
+            httpOnly: true
         })
+            .status(200)
+            .json(userData);
     } catch (error) {
         next(error);
     }
