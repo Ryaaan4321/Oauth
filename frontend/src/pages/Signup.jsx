@@ -21,7 +21,6 @@ export default function Signup() {
         body: JSON.stringify(formdata),
       });
       const data = await response.json();
-      console.log(data);
       setloading(false);
       if (data.success === false) {
         seterror(true);
@@ -63,7 +62,7 @@ export default function Signup() {
         </button>
       </form>
       <div className="flex gap-2 mt-1 ">
-        <p>Have an Account ?</p>
+        <p>Have an Account?</p>
         <span className="text-blue-900 ">
           <Link to="/signin">Sign In</Link>
         </span>
