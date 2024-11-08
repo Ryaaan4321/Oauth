@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import userroute from './routes/userroute.js'
+import authroute from './routes/authroute.js'
 dotenv.config();
 
 mongoose.connect(process.env.MONGO).then(() => {
@@ -13,4 +14,5 @@ app.listen(3000, () => {
 })
 app.use(express.json())
 app.use('/backend/userroute', userroute);
+app.use('/backend/auth',authroute);
 
