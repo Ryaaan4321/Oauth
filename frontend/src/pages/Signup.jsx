@@ -5,7 +5,7 @@ export default function Signup() {
   const [formdata,setformdata]=useState({});
   const handlechnage=(e)=>{
    setformdata({...formdata,[e.target.id]:e.target.value});
-  }
+  };
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7"> Signup</h1>
