@@ -16,3 +16,13 @@ app.use(express.json())
 app.use('/backend/userroute', userroute);
 app.use('/backend/auth',authroute);
 
+app.use((err,req,res,next)=>{
+    const statuscode=err.statuscode||500;
+    const message=err.message || 'Internal server error';
+    return res.status(statuscode).json({
+        success:false,
+        message,
+        statuscode
+    });
+})
+
