@@ -5,10 +5,10 @@ export default function Header() {
     // <h1>Header</h1>
     <div className="bg-slate-700">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
-        <h1 className="font-bold">
+        <h1 className="font-bold text-white">
             <Link to='/'>Auth App</Link>
         </h1>
-        <ul className="flex gap-4">
+        <ul className="flex gap-4 text-white">
           <Link to="/">
             <li>Home</li>
           </Link>
