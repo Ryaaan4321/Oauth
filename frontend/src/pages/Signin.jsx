@@ -1,35 +1,38 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  signinstart,
+  signinsuccess,
+  signinfailure,
+} from "../redux/user/userslice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Signup() {
   const [formdata, setformdata] = useState({});
-  const [error, seterror] = useState(false);
-  const [loading, setloading] = useState(false);
+  const { loading, error } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handlechnage = (e) => {
     setformdata({ ...formdata, [e.target.id]: e.target.value });
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
-    try {
-      setloading(true);
-      seterror(false)
-      const response = await fetch("/backend/auth/signin", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(formdata),
-      });
-      const data = await response.json();
-      setloading(false);
-      if (data.success === false) {
-        seterror(true);
-        return;
-      }
-    } catch (error) {
-      setloading(false);
-      seterror(true);
-      console.log(seterror);
+    dispatch(signinstart());
+
+    const response = await fetch("/backend/auth/signin", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(formdata),
+    });
+    const data = await response.json();
+    if (data.success) {
+      dispatch(signinsuccess(data));
+      navigate("/");
+    }
+    if (data.success === false) {
+      dispatch(signinfailure());
     }
   };
   return (
