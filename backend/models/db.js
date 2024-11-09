@@ -16,6 +16,10 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    profilePicture:{
+        type:String,
+        default:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png/200px-Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png'
+    }
 },
 {
     timestamps:true
