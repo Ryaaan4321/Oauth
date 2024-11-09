@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link ,useNavigate} from "react-router-dom";
+import Google from "../components/Google";
 
 export default function Signup() {
   const [formdata, setformdata] = useState({});
@@ -62,12 +63,14 @@ export default function Signup() {
         <button className="bg-slate-800 rounded-lg uppercase hover:opacity-75 text-white p-3">
           {loading ? "Loading..." : "Sign Up"}
         </button>
+        <Google/>
       </form>
       <div className="flex gap-2 mt-1 ">
         <p>Have an Account?</p>
         <span className="text-blue-900 ">
           <Link to="/signin">Sign In</Link>
         </span>
+        
       </div>
       <p className="text-red-800">{error && "Something went wrong"}</p>
     </div>

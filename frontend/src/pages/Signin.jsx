@@ -6,6 +6,7 @@ import {
   signinfailure,
 } from "../redux/user/userslice";
 import { useDispatch, useSelector } from "react-redux";
+import Google from "../components/Google";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -63,12 +64,14 @@ export default function SignIn() {
         >
           {loading ? 'Loading...' : 'Sign In'}
         </button>
+        <Google/>
       </form>
       <div className='flex gap-2 mt-5'>
         <p>Dont Have an account?</p>
         <Link to='/signup'>
           <span className='text-blue-500'>Sign up</span>
         </Link>
+        
       </div>
       <p className='text-red-700 mt-5'>
         {error ? error.message || 'Something went wrong!' : ''}
