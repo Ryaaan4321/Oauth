@@ -9,14 +9,15 @@ dotenv.config();
 mongoose.connect(process.env.MONGO).then(() => {
     console.log("hmlo hmlo from db")
 })
-const app = express();;
+const app = express();
+app.use(cookieParser());
 app.listen(3000, () => {
     console.log("pols aa gyi")
 })
 app.use(express.json())
 app.use('/backend/user', userroute);
 app.use('/backend/auth',authroute);
-app.use(cookieParser());
+
 
 app.use((err,req,res,next)=>{
     const statuscode=err.statuscode||500;

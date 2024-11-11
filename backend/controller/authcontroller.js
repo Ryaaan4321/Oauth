@@ -76,7 +76,7 @@ export const google = async (req, res, next) => {
                     Math.random().toString(36).slice(-8),
                 email: req.body.email,
                 password: hashedPassword,
-                profilePicture: req.body.photo,
+                profilePicture: req.body.photoURL,
             });
             await newUser.save();
             const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);

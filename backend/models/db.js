@@ -18,7 +18,7 @@ const userSchema=new mongoose.Schema({
     },
     profilePicture:{
         type:String,
-        default:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png/200px-Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png'
+        default:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/.png/200px-Fels_silvestris_silvestris_small_gradual_decrease_of_quality.png"
     }
 },
 {

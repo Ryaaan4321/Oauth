@@ -10,7 +10,9 @@ export const test = (req, res) => {
 
 export const updatUser = async (req, res, next) => {
     if (req.user.id != req.user.params.id) {
-        return next(errorhandler(401, 'you can update only your account'))
+        return res.status(404).json({
+            msg:"you can only update your account"
+        })
     }
     try {
         if (req.body.password) {
@@ -25,11 +27,28 @@ export const updatUser = async (req, res, next) => {
 
                 }
             },
-            {new:true}
+            { new: true }
         );
-        const {password,...rest}=updatUser._doc
+        const { password, ...rest } = updatUser._doc
         res.status(200).json(rest);
     } catch (error) {
-      next(error);
+        next(error);
+    }
+}
+
+
+export const deleteUser = async function (req, res, next) {
+    if (req.user.id != req.params.id) {
+        return res.status(404).json(
+            {
+                msg: "you can only delte your account"
+            }
+        )
+    }
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.status(200).json('User has been deleted');
+    } catch (error) {
+        next(error);
     }
 }

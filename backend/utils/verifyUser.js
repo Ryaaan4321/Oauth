@@ -2,10 +2,9 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv'
+import {errorhandler} from './error.js';
 
-dotenv.config();
-
-export const verifyToken = (req, res, next) => {
+export const verifyUser = (req, res, next) => {
     const token = req.cookies.access_token;
     if (!token) return next(errorhandler(401, 'You are not authenticated!'));
 
