@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useRef } from "react";
 
 export default function Profile() {
   const { currentUser } = useSelector((state) => state.user);
@@ -11,6 +12,7 @@ export default function Profile() {
           src={currentUser.profilePicture}
           alt="hmlo"
           className="h-24 w-24 self-center cursor-pointer rounded-full object-cover mt-2"
+
         />
         <input defaultValue={currentUser.username}
           type="text"
@@ -34,7 +36,7 @@ export default function Profile() {
       </form>
       <div className=" flex justify-between mt-5">
         <span className="text-red-800 cursor-pointer ">Delete Account</span>
-        <span className="text-blue-800 cursor-pointer">Signin</span>
+        <span className="text-red-800 cursor-pointer">Signout</span>
       </div>
     </div>
   );
