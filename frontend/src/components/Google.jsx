@@ -1,11 +1,12 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
-import { app } from "../firebase"
-import { useDispatch } from "react-redux"
-import { signinsuccess } from "../redux/user/userslice"
-import {useNavigate} from 'react-router-dom'
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { app } from "../firebase";
+import { useDispatch } from "react-redux";
+import { signinsuccess } from "../redux/user/userslice";
+import { useNavigate } from "react-router-dom";
+
 export default function Google() {
-    const dispatch=useDispatch();
-    const navigate=useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleGoogleClick = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -23,9 +24,9 @@ export default function Google() {
           photo: result.user.photo.URL,
         }),
       });
-      const data=await res.json();
-      dispatch(signinsuccess(data))
-      navigate('/');
+      const data = await res.json();
+      dispatch(signinsuccess(data));
+      navigate('/profile')
     } catch (error) {
       console.log("something went wrong", error);
     }

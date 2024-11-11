@@ -1,13 +1,20 @@
-import React, { useState } from "react"
-import { useSelector } from "react-redux"
-import { useRef } from "react"
-import {deleteUserStart,deleteUserSuccess,deleteUserFailure} from '../redux/user/userslice.js'
-import { useDispatch } from "react-redux"
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useRef } from "react";
+import {
+  deleteUserStart,
+  deleteUserSuccess,
+  deleteUserFailure,
+  signOut,
+} from "../redux/user/userslice.js";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+  const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
   const [formdata, setformdata] = useState({});
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const handledeleteAccount = async () => {
     try {
       dispatch(deleteUserStart());
@@ -20,12 +27,22 @@ export default function Profile() {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(deleteUserFailure(data))
+        dispatch(deleteUserFailure(data));
         return;
       }
       dispatch(deleteUserSuccess(data));
     } catch (error) {
       dispatch(deleteUserFailure(error));
+    }
+  };
+  const handlesignOut = async () => {
+    try {
+      await fetch("backend/auth/signout");
+      dispatch(signOut);
+      navigate('/')
+      
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -68,7 +85,9 @@ export default function Profile() {
         >
           Delete Account
         </span>
-        <span className="text-red-800 cursor-pointer">Signout</span>
+        <span onClick={handlesignOut} className="text-red-800 cursor-pointer">
+          Signout
+        </span>
       </div>
     </div>
   );
