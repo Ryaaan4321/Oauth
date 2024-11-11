@@ -14,7 +14,7 @@ app.listen(3000, () => {
     console.log("pols aa gyi")
 })
 app.use(express.json())
-app.use('/backend/userroute', userroute);
+app.use('/backend/user', userroute);
 app.use('/backend/auth',authroute);
 app.use(cookieParser());
 
