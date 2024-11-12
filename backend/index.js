@@ -15,9 +15,10 @@ const __dirname = path.resolve()
 const app = express()
 
 const frontendPath = path.join(__dirname, '../frontend/dist')
-app.use(express.static(frontendPath));  
+app.use(express.static(frontendPath));
+ 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'))
+    res.sendFile(path.join(frontendPath, 'index.html'));  
 });
 
 app.use(cookieParser())
