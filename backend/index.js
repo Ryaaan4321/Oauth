@@ -11,14 +11,14 @@ mongoose.connect(process.env.MONGO).then(() => {
     console.log("hmlo hmlo from db")
 })
 
-const __dirname = path.resolve()
-const app = express()
 
-const frontendPath = path.join(__dirname, '../frontend/dist')
+const __dirname = path.resolve(); 
+const frontendPath = path.join(__dirname, 'frontend', 'dist'); 
+
 app.use(express.static(frontendPath));
- 
+
 app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));  
+    res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 app.use(cookieParser())
