@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGO).then(() => {
     console.log("hmlo hmlo from db")
 })
 
-
+const app=express();
 const __dirname = path.resolve(); 
 const frontendPath = path.join(__dirname, 'frontend', 'dist'); 
 
