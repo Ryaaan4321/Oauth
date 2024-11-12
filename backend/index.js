@@ -19,7 +19,7 @@ app.get('*', (req, res) => {
 });
 
 app.use(cookieParser())
-
+const PORT=process.env.PORT||4000
 app.listen(3000, () => {
     console.log("pols aa gyi")
 })
