@@ -10,27 +10,17 @@ dotenv.config();
 mongoose.connect(process.env.MONGO).then(() => {
     console.log("hmlo hmlo from db")
 })
-
 const app=express();
 const __dirname = path.resolve(); 
-const frontendPath = path.join(__dirname, 'frontend', 'dist'); 
-
-app.use(express.static(frontendPath));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
-});
 
 app.use(cookieParser())
 const PORT=process.env.PORT||4000
 app.listen(3000, () => {
     console.log("pols aa gyi")
 })
-
 app.use(express.json())
 app.use('/backend/user', userroute);
 app.use('/backend/auth', authroute);
-
 
 
 app.use((err, req, res, next) => {
@@ -43,3 +33,7 @@ app.use((err, req, res, next) => {
     });
 })
 
+app.use(express.static(path.join(__dirname,"/frontend/dist")));
+app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"));
+})
