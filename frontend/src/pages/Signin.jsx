@@ -6,7 +6,7 @@ import {
   signinfailure,
 } from "../redux/user/userslice.js";
 import { useDispatch, useSelector } from "react-redux";
-import Google from "../components/Google";
+import Google from "../components/Google.jsx";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});

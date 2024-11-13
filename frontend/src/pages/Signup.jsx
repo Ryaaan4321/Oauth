@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link ,useNavigate} from "react-router-dom";
-import Google from "../components/Google";
+import Google from "../components/Google.jsx";
 
 export default function Signup() {
   const [formdata, setformdata] = useState({});
