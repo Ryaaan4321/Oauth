@@ -3,25 +3,24 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   signinstart,
   signinsuccess,
-  signinfailure,
+  signinfailure
 } from "../redux/user/userslice.js";
 import { useDispatch, useSelector } from "react-redux";
 import Google from "../components/Google.jsx";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
-  const { loading, error } = useSelector((state) => state.user);
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.user)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    setFormData({ ...formData, [e.target.id]: e.target.value })
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(signinstart());
+      dispatch(signinstart())
       const res = await fetch('/backend/auth/signin', {
         method: 'POST',
         headers: {
